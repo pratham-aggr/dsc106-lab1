@@ -1,6 +1,153 @@
+h1, h2, h3 {
+  font-weight: bold;
+}
+
 body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
-    font: 100%/1.5 system-ui;
+  background: oklch(99% 0 0);
+}
+
+main, .resume-main {
+  max-width: 60ch;
+  margin: 0 auto;
+  background: white;
+  border-radius: 0.5em;
+  box-shadow: 0 2px 8px 0 oklch(90% 2% 200 / 0.08);
+  padding: 2em 2.5em;
+}
+
+header, section {
+  margin-bottom: 2em;
+}
+
+section header {
+  margin-bottom: 0.5em;
+}
+
+section {
+  background: oklch(98% 0 0);
+  border-radius: 0.4em;
+  padding: 1.2em 1.5em;
+  margin-bottom: 1.5em;
+}
+
+ul {
+  margin-top: 0.3em;
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.3em;
+}
+
+@media (max-width: 700px) {
+  main, .resume-main {
+    padding: 1em 0.5em;
   }
+  section {
+    padding: 0.7em 0.5em;
+  }
+}
+html {
+  --color-accent: oklch(65% 50% 0);
+  accent-color: var(--color-accent);
+}
+
+body {
+  font: 100%/1.5 system-ui;
+  max-width: 90ch;
+  margin-inline: max(1em, (100% - 100ch) / 2);
+  padding: 10ch;
+}
+
+nav ul,
+nav li {
+  display: contents;
+}
+
+nav {
+  display: flex;
+  border-bottom: 1px solid oklch(80% 3% 200);
+  margin-bottom: 2em;
+}
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em;
+  margin-top: 2em;
+}
+
+.projects article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  background: oklch(98% 0 0);
+  border-radius: 0.5em;
+  box-shadow: 0 2px 8px 0 oklch(90% 2% 200 / 0.1);
+  padding: 1em;
+}
+
+.projects h2 {
+  margin: 0;
+}
+
+.projects img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-block: 1em;
+}
+
+nav a {
+h1 {
+  font-size: 400%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+}
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em;
+}
+
+nav a.current {
+  border-bottom: 0.4em solid oklch(80% 3% 200);
+  padding-bottom: 0.1em;
+}
+
+nav a:hover {
+  border-bottom: 0.4em solid var(--color-accent);
+  padding-bottom: 0.1em;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+
+label {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+}
+
+input,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  grid-column: 1 / -1;
+}
