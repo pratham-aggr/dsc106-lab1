@@ -19,7 +19,27 @@ function $$(selector, context = document) {
 
 // Use absolute paths for navigation so links work from any page
 
-// Use relative URLs for navigation (GitHub Pages compatible)
+
+// Helper to get correct relative path for each page
+function getRelativeUrl(target) {
+  // If external, return as is
+  if (target.startsWith('http')) return target;
+  // Get current path segments
+  let current = location.pathname.split('/').filter(Boolean);
+  // Remove filename if present
+  if (current.length && current[current.length - 1].includes('.')) current.pop();
+  // Target segments
+  let targetParts = target.split('/');
+  // Remove ./ if present
+  if (targetParts[0] === '.') targetParts.shift();
+  // If already in same folder
+  if (current.length === 0) return target;
+  // Go up for each folder deep
+  let prefix = '';
+  for (let i = 0; i < current.length; i++) prefix += '../';
+  return prefix + target;
+}
+
 const pages = [
   { url: 'index.html', title: 'Home' },
   { url: 'projects/index.html', title: 'Projects' },
@@ -33,9 +53,10 @@ document.body.prepend(nav);
 
 
 
+
 for (const p of pages) {
   const a = document.createElement('a');
-  a.href = p.url;
+  a.href = getRelativeUrl(p.url);
   a.textContent = p.title;
   // Highlight current page: match by pathname ending
   if (!p.external && location.pathname.endsWith(p.url)) {
