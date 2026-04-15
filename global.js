@@ -20,25 +20,35 @@ function $$(selector, context = document) {
 // Use absolute paths for navigation so links work from any page
 
 
-// Helper to get correct relative path for each page
+
+// Helper to get correct relative path for each page based on current location
 function getRelativeUrl(target) {
-  // If external, return as is
   if (target.startsWith('http')) return target;
-  // Get current path segments
-  let current = location.pathname.split('/').filter(Boolean);
-  // Remove filename if present
-  if (current.length && current[current.length - 1].includes('.')) current.pop();
-  // Target segments
-  let targetParts = target.split('/');
-  // Remove ./ if present
-  if (targetParts[0] === '.') targetParts.shift();
+  // Get current path (directory only)
+  let currentPath = location.pathname;
+  if (!currentPath.endsWith('/')) {
+    currentPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+  }
   // If already in same folder
-  if (current.length === 0) return target;
-  // Go up for each folder deep
+  if (currentPath === '/' && !target.includes('/')) return target;
+  // Count how many folders deep we are
+  let depth = currentPath.split('/').filter(Boolean).length;
+  // If at root, just use target
+  if (depth === 0) return target;
+  // If target is in a subfolder (e.g., contact/index.html)
+  if (target.includes('/')) {
+    // If already in that subfolder, just use filename
+    let folder = target.split('/')[0];
+    if (currentPath.includes(folder + '/')) {
+      return target.split('/')[1];
+    }
+  }
+  // Otherwise, go up for each folder deep
   let prefix = '';
-  for (let i = 0; i < current.length; i++) prefix += '../';
+  for (let i = 1; i < depth; i++) prefix += '../';
   return prefix + target;
 }
+
 
 const pages = [
   { url: 'index.html', title: 'Home' },
@@ -54,12 +64,15 @@ document.body.prepend(nav);
 
 
 
+
 for (const p of pages) {
   const a = document.createElement('a');
   a.href = getRelativeUrl(p.url);
   a.textContent = p.title;
-  // Highlight current page: match by pathname ending
-  if (!p.external && location.pathname.endsWith(p.url)) {
+  // Highlight current page: match by normalized path
+  let normalizedCurrent = location.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '/index.html');
+  let normalizedTarget = '/' + p.url;
+  if (!p.external && (normalizedCurrent === normalizedTarget || location.pathname.endsWith(p.url))) {
     a.classList.add('current');
   }
   // Open external links in new tab
