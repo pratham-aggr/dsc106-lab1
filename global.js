@@ -19,17 +19,18 @@ function $$(selector, context = document) {
 
 // Use absolute paths for navigation so links work from any page
 
-// Use root-relative URLs for navigation
+// Use relative URLs for navigation (GitHub Pages compatible)
 const pages = [
-  { url: '/index.html', title: 'Home' },
-  { url: '/projects/index.html', title: 'Projects' },
-  { url: '/contact/index.html', title: 'Contact' },
+  { url: 'index.html', title: 'Home' },
+  { url: 'projects/index.html', title: 'Projects' },
+  { url: 'contact/index.html', title: 'Contact' },
   { url: 'https://github.com/pratham-aggr', title: 'Profile', external: true },
-  { url: '/resume.html', title: 'Resume' }
+  { url: 'resume.html', title: 'Resume' }
 ];
 
 const nav = document.createElement('nav');
 document.body.prepend(nav);
+
 
 
 for (const p of pages) {
@@ -37,7 +38,7 @@ for (const p of pages) {
   a.href = p.url;
   a.textContent = p.title;
   // Highlight current page: match by pathname ending
-  if (!p.external && location.pathname === p.url) {
+  if (!p.external && location.pathname.endsWith(p.url)) {
     a.classList.add('current');
   }
   // Open external links in new tab
