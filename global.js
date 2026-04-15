@@ -15,49 +15,36 @@ function $$(selector, context = document) {
 
 // Step 3.1: Add navigation menu dynamically
 
-// Step 3.1: Add navigation menu dynamically (improved)
-const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
 
-// Helper to get correct relative path for each page
-function getRelativeUrl(url) {
-  if (url.startsWith('http')) return url;
-  // Remove leading './' or '/' if present
-  url = url.replace(/^\.?\/?/, '');
-  // If on root (index.html in root), no prefix needed
-  let path = location.pathname;
-  if (path === '/' || path === '/index.html') return url;
-  // Otherwise, go up for each directory deep (excluding filename)
-  let segments = path.split('/').filter(Boolean);
-  // Remove the last segment if it's a file (has a dot)
-  if (segments.length && segments[segments.length - 1].includes('.')) segments.pop();
-  let prefix = '';
-  for (let i = 0; i < segments.length; i++) prefix += '../';
-  return prefix + url;
-}
 
-let pages = [
-  { url: 'index.html', title: 'Home' },
-  { url: 'projects/index.html', title: 'Projects' },
-  { url: 'contact/index.html', title: 'Contact' },
+// Use absolute paths for navigation so links work from any page
+
+// Use root-relative URLs for navigation
+const pages = [
+  { url: '/index.html', title: 'Home' },
+  { url: '/projects/index.html', title: 'Projects' },
+  { url: '/contact/index.html', title: 'Contact' },
   { url: 'https://github.com/pratham-aggr', title: 'Profile', external: true },
-  { url: 'resume.html', title: 'Resume' }
+  { url: '/resume.html', title: 'Resume' }
 ];
 
-let nav = document.createElement('nav');
+const nav = document.createElement('nav');
 document.body.prepend(nav);
 
-for (let p of pages) {
-  let url = getRelativeUrl(p.url);
-  let a = document.createElement('a');
-  a.href = url;
+
+for (const p of pages) {
+  const a = document.createElement('a');
+  a.href = p.url;
   a.textContent = p.title;
-  // Highlight current page
-  a.classList.toggle(
-    'current',
-    a.host === location.host && a.pathname === location.pathname
-  );
+  // Highlight current page: match by pathname ending
+  if (!p.external && location.pathname === p.url) {
+    a.classList.add('current');
+  }
   // Open external links in new tab
-  a.toggleAttribute('target', a.host !== location.host);
+  if (p.external) {
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  }
   nav.append(a);
 }
 
