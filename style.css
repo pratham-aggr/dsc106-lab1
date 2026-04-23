@@ -223,3 +223,45 @@ textarea {
 button {
   grid-column: 1 / -1;
 }
+
+#profile-stats {
+  background: canvas;
+  color: canvastext;
+  border-radius: 0.5em;
+  box-shadow: 0 2px 8px 0 oklch(90% 2% 200 / 0.1);
+  padding: 2em;
+  margin: 2em 0;
+}
+
+#profile-stats dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5em;
+  text-align: center;
+}
+
+#profile-stats dt {
+  grid-row: 1;
+  font-weight: bold;
+  color: oklch(50% 0 0);
+  font-size: 0.9em;
+}
+
+#profile-stats dd {
+  grid-row: 2;
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: bold;
+  color: var(--color-accent);
+}
+
+@media (max-width: 600px) {
+  #profile-stats dl {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+  }
+
+  #profile-stats {
+    padding: 1.5em;
+  }
+}
