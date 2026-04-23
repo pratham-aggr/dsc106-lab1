@@ -3,23 +3,6 @@ console.log('IT\'S ALIVE!');
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
-// Step 2.1: Get an array of all nav links
-// const navLinks = $$("nav a");
-
-// Step 2.2: Find the link to the current page
-// const currentLink = navLinks.find(
-//   (a) => a.host === location.host && a.pathname === location.pathname
-// );
-
-// Step 2.3: Add the current class to the current page link
-
-// Step 3.1: Add navigation menu dynamically
-
-
-
-// Use absolute paths for navigation so links work from any page
-
-
 
 // Helper to get correct relative path for each page based on current location
 function getRelativeUrl(target) {
@@ -106,3 +89,42 @@ select.addEventListener('input', function (event) {
   setColorScheme(event.target.value);
   localStorage.colorScheme = event.target.value;
 });
+
+export async function fetchJSON(url) {
+  try {
+    const response = await fetch(url);
+
+    // Check if request was successful
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+
+    // Parse JSON data
+    const data = await response.json();
+
+    return data;
+
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+  }
+}
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  containerElement.innerHTML = '';
+
+  for (const project of projects) {
+    const article = document.createElement('article');
+
+    article.innerHTML = `
+      <${headingLevel}>${project.title}</${headingLevel}>
+      <img src="${project.image}" alt="${project.title}">
+      <p>${project.description}</p>
+    `;
+
+    containerElement.appendChild(article);
+  }
+}
+
+export async function fetchGithubData(username) {
+  return fetchJSON(`https://api.github.com/users/${username}`);
+}

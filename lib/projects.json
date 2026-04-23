@@ -1,0 +1,74 @@
+[
+  {
+    "title": "DSC106 Lab 1: Personal Portfolio",
+    "year": 2025,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Built a personal portfolio website with dynamic project templating using JSON data and JavaScript. Implemented data-driven UI rendering with reusable components."
+  },
+  {
+    "title": "DSC106 Lab 2: Data Visualization",
+    "year": 2025,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Created interactive data visualizations using D3.js and JavaScript. Explored different visualization techniques for exploring complex datasets."
+  },
+  {
+    "title": "Machine Learning Project",
+    "year": 2024,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Developed a predictive model using Python and scikit-learn for classification tasks. Achieved 92% accuracy on test dataset with proper cross-validation."
+  },
+  {
+    "title": "Data Analysis Dashboard",
+    "year": 2024,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Built an interactive dashboard using Pandas and matplotlib to analyze sales trends. Identified key insights that improved business decisions."
+  },
+  {
+    "title": "Web Scraping Project",
+    "year": 2024,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Scraped and analyzed data from multiple sources using BeautifulSoup and requests. Created a comprehensive dataset for further analysis."
+  },
+  {
+    "title": "Statistics Analysis",
+    "year": 2023,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Performed comprehensive statistical analysis on real-world datasets. Used hypothesis testing and regression analysis to draw meaningful conclusions."
+  },
+  {
+    "title": "Python Data Processing",
+    "year": 2023,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Automated data processing pipeline using Python. Reduced manual data handling time by 80% with efficient scripts."
+  },
+  {
+    "title": "SQL Database Project",
+    "year": 2023,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Designed and implemented a relational database schema. Created complex queries to extract and summarize business metrics."
+  },
+  {
+    "title": "Time Series Forecasting",
+    "year": 2024,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Built time series models to forecast future trends. Compared ARIMA and LSTM approaches for optimal performance."
+  },
+  {
+    "title": "Clustering Analysis",
+    "year": 2024,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Applied unsupervised learning techniques to segment customer data. Used K-means and hierarchical clustering for market analysis."
+  },
+  {
+    "title": "NLP Text Analysis",
+    "year": 2024,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Implemented sentiment analysis and text classification using NLP techniques. Processed and analyzed thousands of text documents."
+  },
+  {
+    "title": "Data Storytelling Workshop",
+    "year": 2025,
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Created compelling data narratives for stakeholder presentations. Combined visualizations with clear explanations to drive insights home."
+  }
+]
