@@ -75,7 +75,31 @@ function renderPieChart(projectsData) {
       .append('li')
       .attr('style', `--color:${colors(i)}`)
       .attr('class', i === selectedIndex ? 'legend-item selected' : 'legend-item')
-      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`)
+      .on('click', () => {
+        selectedIndex = selectedIndex === i ? -1 : i;
+
+        svg
+          .selectAll('path')
+          .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+        d3.select('.legend')
+          .selectAll('li')
+          .attr('class', (_, idx) =>
+            idx === selectedIndex ? 'legend-item selected' : 'legend-item'
+          );
+
+        let searchFiltered = getSearchFiltered();
+        if (selectedIndex === -1) {
+          renderProjects(searchFiltered, projectsContainer, 'h2');
+        } else {
+          let selectedYear = data[selectedIndex].label;
+          renderProjects(
+            searchFiltered.filter((p) => p.year === selectedYear),
+            projectsContainer,
+            'h2'
+          );
+        }
+      });
   });
 }
 

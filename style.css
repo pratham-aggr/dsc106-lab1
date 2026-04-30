@@ -223,6 +223,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 0.4em;
+  cursor: pointer;
 }
 
 .swatch {
@@ -245,7 +246,6 @@ nav {
   box-sizing: border-box;
 }
 
-nav a {
 h1 {
   font-size: 400%;
 }
@@ -254,6 +254,8 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
 }
+
+nav a {
   flex: 1;
   text-decoration: none;
   color: inherit;
