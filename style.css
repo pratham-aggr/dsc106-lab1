@@ -343,3 +343,31 @@ button {
     padding: 1.5em;
   }
 }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
+  gap: 1.5em;
+  background: canvas;
+  color: canvastext;
+  border-radius: 0.5em;
+  box-shadow: 0 2px 8px 0 oklch(90% 2% 200 / 0.1);
+  padding: 2em;
+  margin: 2em 0;
+}
+
+.stats dt {
+  font-weight: bold;
+  color: oklch(50% 0 0);
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25em;
+}
+
+.stats dd {
+  margin: 0;
+  font-size: 1.6em;
+  font-weight: bold;
+  color: var(--color-accent);
+}
